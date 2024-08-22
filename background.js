@@ -7,7 +7,7 @@ const NOTIFICATION_TITLE = 'Backlog: お知らせ';
 const NOTIFICATION_ICON = 'icons/task_alert48.png';
 
 // 通知する間隔
-const CHECK_INTERVAL = 15 * 60 * 1000;
+const CHECK_INTERVAL = 15;
 
 // スケジュールの設定
 chrome.alarms.create('checkNotifications', { periodInMinutes: CHECK_INTERVAL });
