@@ -20,8 +20,6 @@ chrome.alarms.onAlarm.addListener(alarm => {
   }
 });
 
-fetchNotifications();
-
 // 通知がクリックされたときの処理
 chrome.notifications.onClicked.addListener(notificationId => {
   console.log('クリックされた通知のID:', notificationId);
@@ -32,20 +30,25 @@ chrome.notifications.onClicked.addListener(notificationId => {
 // Backlog API から通知数を取得する関数
 async function fetchNotifications() {
   try {
-    const response = await fetch(`${BACKLOG_API_URL}/notifications?apiKey=${BACKLOG_API_KEY}&isRead=false`);
+    const response = await fetch(`${BACKLOG_API_URL}/notifications?apiKey=${BACKLOG_API_KEY}`);
     if (!response.ok) {
       throw new Error('ネットワークレスポンスにエラーが発生しました');
     }
-    const unreadNotifications = await response.json();
+    const notifications = await response.json();
+
+    // 未読の通知のみをフィルタリング
+    const unreadNotifications = notifications.filter(notification => !notification.alreadyRead);
 
     // 未読通知が存在する場合
     if (unreadNotifications.length > 0) {
-      showNotification(`未読のお知らせが ${unreadNotifications.length} 件取得されました。`);
+      showNotification(`未読のお知らせが ${unreadNotifications.length} 件見つかりました`);
     }
   } catch (error) {
     console.error('未読のお知らせ取得に失敗しました', error);
   }
 }
+
+fetchNotifications();
 
 // 通知を表示する関数
 function showNotification(message) {
