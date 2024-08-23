@@ -1,16 +1,66 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Backlog task alert</title>
+    <title>Backlog Task Alert</title>
     <style>
       body {
-        width: 200px;
+        width: 350px;
+        height: 200px;
         font-family: Arial, sans-serif;
+      }
+      #form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .form-group {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        width: 100%;
+      }
+      .form-group label {
+        flex: 0 0 120px;
+        text-align: right;
+        margin-right: 10px;
+      }
+      .form-group input {
+        flex: 1;
+      }
+      button {
+        margin-top: 20px;
+      }
+      .message {
+        margin-top: 10px;
+        color: green;
+      }
+      .hidden {
+        display: none;
+      }
+      #currentSettings {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        width: 100%;
+        max-width: 300px;
       }
     </style>
   </head>
   <body>
-    <h3>Backlog task alert</h3>
-    <p>This extension will notify you about unresolved tasks every 3 minutes.</p>
+    <h3>Backlog Task Alert</h3>
+    <hr>
+    <div id="form">
+      <p>Enter your Backlog Domain and API key:</p>
+      <p>Your Domain:
+        <input id="domain" type="text" placeholder="Enter your Domain" />
+      </p>
+      <p>Your API key:
+        <input id="apiKey" type="text" placeholder="Enter your API key" />
+      </p>
+      <button id="save">Save</button>
+    </div>
+    <hr>
+    <p class="message hidden" id="message"></p>
+    <p class="hidden" id="currentSettings"></p>
+    <script src="popup.js"></script>
   </body>
 </html>
