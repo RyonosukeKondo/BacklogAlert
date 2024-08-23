@@ -6,7 +6,7 @@ document.getElementById('save').addEventListener('click', () => {
     chrome.storage.sync.set({ domain, apiKey }, () => {
       // 保存成功のメッセージを表示
       const messageElement = document.getElementById('message');
-      messageElement.innerHTML = `Your domain and API key have been successfully saved!<br>Domain: ${domain}<br>API Key: ${apiKey}`;
+      messageElement.innerHTML = `ドメインとAPIキーは正しく保存されました!<br>ドメイン: ${domain}<br>APIキー: ${apiKey}`;
       messageElement.style.color = 'green';
       messageElement.classList.remove('hidden');
 
@@ -21,13 +21,13 @@ document.getElementById('save').addEventListener('click', () => {
 
       // 現在の設定を表示
       const currentSettings = document.getElementById('currentSettings');
-      currentSettings.innerHTML = `Current Settings<br>Domain: ${domain}<br>API Key: ${apiKey}`;
+      currentSettings.innerHTML = `現在の設定<br>ドメイン: ${domain}<br>APIキー: ${apiKey}`;
       currentSettings.classList.remove('hidden');
     });
   } else {
     // エラーメッセージを表示
     const messageElement = document.getElementById('message');
-    messageElement.textContent = 'Failed to save. Please try again.';
+    messageElement.textContent = '保存に失敗しました。入力し直してください';
     messageElement.style.color = 'red';
     messageElement.classList.remove('hidden');
   }
@@ -40,7 +40,7 @@ function loadCurrentSettings() {
       document.getElementById('domain').value = '';
       document.getElementById('apiKey').value = '';
       const currentSettings = document.getElementById('currentSettings');
-      currentSettings.innerHTML = `Current Settings<br>Domain: ${domain}<br>API Key: ${apiKey}`;
+      currentSettings.innerHTML = `現在の設定<br>ドメイン: ${domain}<br>APIキー: ${apiKey}`;
       currentSettings.classList.remove('hidden');
     }
   });
