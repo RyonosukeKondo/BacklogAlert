@@ -7,7 +7,7 @@ document.getElementById('save').addEventListener('click', () => {
     chrome.storage.sync.set({ domain, apiKey, apiCallInterval: parseInt(apiCallInterval, 10) }, () => {
       // 保存成功のメッセージを表示
       const messageElement = document.getElementById('message');
-      messageElement.innerHTML = `正しく保存されました!<br>ドメイン: ${domain}<br>APIキー: ${apiKey}<br>通知間隔: ${apiCallInterval}分`;
+      messageElement.innerHTML = `正しく保存されました!<br>スペース: ${domain}<br>APIキー: ${apiKey}<br>通知間隔: ${apiCallInterval}分`;
       messageElement.style.color = 'green';
       messageElement.classList.remove('hidden');
 
@@ -22,7 +22,7 @@ document.getElementById('save').addEventListener('click', () => {
 
       // 現在の設定を表示
       const currentSettings = document.getElementById('currentSettings');
-      currentSettings.innerHTML = `現在の設定<br>ドメイン: ${domain}<br>APIキー: ${apiKey}<br>通知間隔: ${apiCallInterval}分`;
+      currentSettings.innerHTML = `現在の設定<br>スペース: ${domain}<br>APIキー: ${apiKey}<br>通知間隔: ${apiCallInterval}分`;
       currentSettings.classList.remove('hidden');
     });
   } else {
@@ -42,7 +42,7 @@ function loadCurrentSettings() {
       document.getElementById('apiKey').value = '';
       document.getElementById('apiCallInterval').value = '';
       const currentSettings = document.getElementById('currentSettings');
-      currentSettings.innerHTML = `現在の設定<br>ドメイン: ${domain}<br>APIキー: ${apiKey}<br>通知間隔: ${apiCallInterval}分`;
+      currentSettings.innerHTML = `現在の設定<br>スペース: ${domain}<br>APIキー: ${apiKey}<br>通知間隔: ${apiCallInterval}分`;
       currentSettings.classList.remove('hidden');
     }
   });

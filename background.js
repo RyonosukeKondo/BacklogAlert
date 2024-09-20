@@ -37,7 +37,7 @@ chrome.notifications.onClicked.addListener(() => {
       const DASHBOARD_URL = `https://${domain}/dashboard`;
       chrome.tabs.create({ url: DASHBOARD_URL });
     } else {
-      console.error('Backlogドメインが設定されていません');
+      console.error('Backlogスペースが設定されていません');
     }
   });
 });
@@ -48,7 +48,7 @@ async function fetchNotifications() {
     // chrome.storage からユーザーが入力した設定を取得
     chrome.storage.sync.get(['domain', 'apiKey'], async ({ domain, apiKey }) => {
       if (!domain || !apiKey) {
-        console.error('BacklogドメインとAPIキーが設定されていません');
+        console.error('BacklogスペースとAPIキーが設定されていません');
         return;
       }
 
