@@ -6,12 +6,26 @@ const NOTIFICATION_ICON = 'icons/task_alert48.png';
 const CHECK_INTERVAL = 5;
 
 // スケジュールの設定
-chrome.alarms.create('checkNotifications', { periodInMinutes: CHECK_INTERVAL });
+async function setupAlarm() {
+  const { apiCallInterval } = await chrome.storage.sync.get(['apiCallInterval']);
+  const interval = apiCallInterval || 5;
+  chrome.alarms.create('checkNotifications', { periodInMinutes: interval });
+}
+
+// アラームを初期化
+setupAlarm();
 
 // アラームがトリガーされたときに実行される処理
 chrome.alarms.onAlarm.addListener(alarm => {
   if (alarm.name === 'checkNotifications') {
     fetchNotifications();
+  }
+});
+
+// apiCallInterval が変更されたときにアラームを再設定
+chrome.storage.onChanged.addListener((changes) => {
+  if (changes.apiCallInterval) {
+    setupAlarm();
   }
 });
 

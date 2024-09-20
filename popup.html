@@ -6,7 +6,7 @@
     <style>
       body {
         width: 350px;
-        height: 200px;
+        height: 250px;
         font-family: Arial, sans-serif;
       }
       #form {
@@ -50,12 +50,15 @@
     <h3>Backlog Task Alert</h3>
     <hr>
     <div id="form">
-      <p>BacklogのドメインとAPIキーを入力してください:</p>
+      <p>Backlogのドメイン、APIキー、通知間隔を登録してください:</p>
       <p>ドメイン:
         <input id="domain" type="text" placeholder="ドメインを入力" />
       </p>
       <p>APIキー:
         <input id="apiKey" type="text" placeholder="  APIキーを入力" />
+      </p>
+      <p>通知間隔:
+        <input id="apiCallInterval" type="number" placeholder="通知する間隔を入力(分)" min="1" />
       </p>
       <button id="save">Save</button>
     </div>
